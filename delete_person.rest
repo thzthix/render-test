@@ -1,0 +1,53 @@
+DELETE  http://localhost:3001/api/persons/3 HTTP/1.1
+
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "fubao",
+    "number": "0934-340234-23443"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "lebao",
+    "number": "0934-340234-23443"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "aibao"
+ 
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+     "number": "0934-340234-23443"
+ 
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+   
+ 
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "fubao",
+    "number": "34934-32434-2344"
+}
