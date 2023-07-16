@@ -59,6 +59,7 @@ app.get("/", (request, response) => {
 });
 
 app.get("/api/persons", (request, response) => {
+  console.log("getting");
   Person.find({}).then((persons) => {
     response.json(persons);
   });
@@ -98,9 +99,19 @@ app.post("/api/persons", (request, response) => {
       error: "name must be unique",
     });
   }
-  person.id = id;
-  persons = persons.concat(person);
-  response.json(person);
+  // person.id = id;
+  // persons = persons.concat(person);
+  const newPerson = new Person({
+    name,
+    number,
+  });
+
+  newPerson.save().then((result) => {
+    console.log(
+      `added ${newPerson.name} number ${newPerson.number} to phonebook`
+    );
+  });
+  response.json(newPerson);
 });
 const PORT = process.env.PORT || 3001;
 app.listen(PORT);
