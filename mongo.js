@@ -1,20 +1,19 @@
 const mongoose = require("mongoose");
-// password:yyGCtIvJ6VGBznEo
-if (process.argv.length < 3) {
-  console.log("give password as argument");
-  process.exit(1);
-}
 
-const password = process.argv[2];
+// if (process.argv.length < 3) {
+//   console.log("give password as argument");
+//   process.exit(1);
+// }
 
-const url = `mongodb+srv://seohas0428:${password}@cluster0.zwxjgwr.mongodb.net/phonebook?retryWrites=true&w=majority`;
+const uri = process.env.MONGODB_URI;
 
+console.log(uri);
 mongoose.set("strictQuery", false);
-// const url = process.env.MONGODB_URI;
-console.log("connecting to", url);
+
+console.log("connecting to", uri);
 
 mongoose
-  .connect(url)
+  .connect(uri)
   .then((result) => {
     console.log("connected to MongoDB");
   })
