@@ -46,4 +46,4 @@ if (process.argv.length > 3) {
     mongoose.connection.close();
   });
 }
-module.exports = mongoose.model("Persons", phoneSchema);
+module.exports = mongoose.model("Person", phoneSchema);
