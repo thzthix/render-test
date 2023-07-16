@@ -1,7 +1,9 @@
 const express = require("express");
 const morgan = require("morgan");
 const cors = require("cors");
+const Person = require("./mongo");
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 app.use(express.static("build"));
@@ -54,8 +56,13 @@ app.use(
 app.get("/", (request, response) => {
   response.send("<h1>Hello World</h1>");
 });
+
 app.get("/api/persons", (request, response) => {
-  response.json(persons);
+  Person.find({}).then((persons) => {
+    response.json(persons);
+
+    mongoose.connection.close();
+  });
 });
 app.get("/info", (request, response) => {
   const date = new Date();
