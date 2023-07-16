@@ -28,22 +28,22 @@ const phoneSchema = new mongoose.Schema({
 
 const Persons = mongoose.model("Person", phoneSchema);
 
-if (process.argv.length > 3) {
-  const person = new Persons({
-    name: process.argv[3],
-    number: process.argv[4],
-  });
+// if (process.argv.length > 3) {
+//   const person = new Persons({
+//     name: process.argv[3],
+//     number: process.argv[4],
+//   });
 
-  person.save().then((result) => {
-    console.log(`added ${person.name} number ${person.number} to phonebook`);
-    mongoose.connection.close();
-  });
-} else {
-  Persons.find({}).then((result) => {
-    result.forEach((person) => {
-      console.log(person);
-    });
-    mongoose.connection.close();
-  });
-}
+//   person.save().then((result) => {
+//     console.log(`added ${person.name} number ${person.number} to phonebook`);
+//     mongoose.connection.close();
+//   });
+// } else {
+//   Persons.find({}).then((result) => {
+//     result.forEach((person) => {
+//       console.log(person);
+//     });
+//     mongoose.connection.close();
+//   });
+// }
 module.exports = mongoose.model("Person", phoneSchema);
