@@ -4,7 +4,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const Person = require("./mongo");
 const app = express();
-// TODO: add transforming json format,
+
 // TODO:write all Mongoose-specific code into its own module
 app.use(express.json());
 app.use(cors());
@@ -87,6 +87,16 @@ app.delete("/api/persons/:id", (request, response, next) => {
     })
     .catch((error) => next(error));
 });
+const errorHandler = (error, request, response, next) => {
+  console.error(error.message);
+
+  if (error.name === "CastError") {
+    return response.status(400).send({ error: "malformatted id" });
+  }
+
+  next(error);
+};
+
 app.post("/api/persons", (request, response) => {
   const id = Math.floor(Math.random() * 300000);
   const person = request.body;
@@ -117,5 +127,5 @@ app.post("/api/persons", (request, response) => {
 });
 const PORT = process.env.PORT || 3001;
 app.listen(PORT);
-
+app.use(errorHandler);
 console.log(`Server running on port ${PORT}`);
