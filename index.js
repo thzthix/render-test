@@ -4,7 +4,8 @@ const morgan = require("morgan");
 const cors = require("cors");
 const Person = require("./mongo");
 const app = express();
-
+// TODO: add transforming json format,
+// TODO:write all Mongoose-specific code into its own module
 app.use(express.json());
 app.use(cors());
 app.use(express.static("build"));
@@ -79,11 +80,12 @@ app.get("/api/persons/:id", (request, response) => {
     response.status(404).end();
   }
 });
-app.delete("/api/persons/:id", (request, response) => {
-  const id = request.params.id;
-  persons = persons.filter((person) => person.id !== id);
-
-  response.status(204).end();
+app.delete("/api/persons/:id", (request, response, next) => {
+  Person.findByIdAndRemove(request.params.id)
+    .then((result) => {
+      response.status(204).end();
+    })
+    .catch((error) => next(error));
 });
 app.post("/api/persons", (request, response) => {
   const id = Math.floor(Math.random() * 300000);
