@@ -68,7 +68,8 @@ app.get("/api/persons", (request, response) => {
 });
 app.get("/info", (request, response) => {
   const date = new Date();
-  response.send(`<h3>Phonebook has info for ${persons.length} people</h3>
+
+  response.send(`<h3>Phonebook has info for ${Person.countDocuments()} people</h3>
   <br/>
   <h3>${date}</h3>`);
 });
