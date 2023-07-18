@@ -61,20 +61,19 @@ app.get("/", (request, response) => {
 });
 
 app.get("/api/persons", (request, response) => {
-  console.log("getting");
   Person.find({}).then((persons) => {
     response.json(persons);
   });
 });
 app.get("/info", (request, response) => {
-  const date = new Date();
-
-  response.send(`<h3>Phonebook has info for ${Person.countDocuments()} people</h3>
+  Person.count({}).then((count) => {
+    const date = new Date();
+    response.send(`<h3>Phonebook has info for ${count} people</h3>
   <br/>
   <h3>${date}</h3>`);
+  });
 });
 app.get("/api/persons/:id", (request, response, next) => {
-  console.log("gett!!!");
   const id = request.params.id;
   Person.findById(id)
     .then((person) => {
