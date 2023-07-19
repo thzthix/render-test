@@ -1,12 +1,74 @@
-DELETE  http://localhost:3001/api/persons/3 HTTP/1.1
+DELETE  http://localhost:3001/api/persons/64b63190eebf7785aa2eba48 HTTP/1.1
+###
+DELETE  http://localhost:3001/api/persons/unknown HTTP/1.1
+###
+GET http://localhost:3001/api/persons/64b4236f26cc924f1aa48f9d/ HTTP/1.1
+content-type: application/json
 
+###
+GET http://localhost:3001/info HTTP/1.1
+content-type: application/json
+###
+PUT http://localhost:3001/api/persons/64b631aeeebf7785aa2eba4b HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "fubao",
+    "number": "040-22334455"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "valid1",
+    "number": "09-1234556"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "valid2",
+    "number": "040-22334455"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "invalid1",
+    "number": "1234556"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "invalid2",
+    "number": "10-22-334455"
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+
+{
+    "name": "invalid3",
+    "number": "1-22334455"
+}
 ###
 POST http://localhost:3001/api/persons/ HTTP/1.1
 content-type: application/json
 
 {
-    "name": "fubao",
-    "number": "0934-340234-23443"
+    "name": "lebao3",
+    "number": "09-1234556"
 }
 ###
 POST http://localhost:3001/api/persons/ HTTP/1.1
@@ -22,6 +84,15 @@ content-type: application/json
 
 {
     "name": "aibao"
+ 
+}
+###
+POST http://localhost:3001/api/persons/ HTTP/1.1
+content-type: application/json
+
+{
+    "name": "ai",
+    "number": "0934-340234-23443"
  
 }
 ###
