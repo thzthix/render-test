@@ -1,25 +1,25 @@
-const mongoose = require("mongoose");
-require("dotenv").config();
+const mongoose = require("mongoose")
+require("dotenv").config()
 // if (process.argv.length < 3) {
 //   console.log("give password as argument");
 //   process.exit(1);
 // }
 // TODO: enable validation whle updating
-const uri = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI
 
-console.log(uri);
-mongoose.set("strictQuery", false);
+console.log(uri)
+mongoose.set("strictQuery", false)
 
-console.log("connecting to", uri);
+console.log("connecting to", uri)
 
 mongoose
   .connect(uri)
-  .then((result) => {
-    console.log("connected to MongoDB");
+  .then(() => {
+    console.log("connected to MongoDB")
   })
   .catch((error) => {
-    console.log("error connecting to MongoDB:", error.message);
-  });
+    console.log("error connecting to MongoDB:", error.message)
+  })
 
 const phoneSchema = new mongoose.Schema({
   name: {
@@ -32,21 +32,21 @@ const phoneSchema = new mongoose.Schema({
     minLength: 8,
     validate: {
       validator: function (v) {
-        return /^\d{2,3}-\d{6,}$/.test(v);
+        return /^\d{2,3}-\d{6,}$/.test(v)
       },
       message: "this is not a valid number",
     },
     required: [true, "User phone number required"],
   },
-});
+})
 phoneSchema.set("toJSON", {
   transform: (document, returnedObject) => {
-    returnedObject.id = returnedObject._id.toString();
-    delete returnedObject._id;
-    delete returnedObject.__v;
+    returnedObject.id = returnedObject._id.toString()
+    delete returnedObject._id
+    delete returnedObject.__v
   },
-});
-const Persons = mongoose.model("Person", phoneSchema);
+})
+// const Persons = mongoose.model("Person", phoneSchema)
 
 // if (process.argv.length > 3) {
 //   const person = new Persons({
@@ -66,4 +66,4 @@ const Persons = mongoose.model("Person", phoneSchema);
 //     mongoose.connection.close();
 //   });
 // }
-module.exports = mongoose.model("Person", phoneSchema);
+module.exports = mongoose.model("Person", phoneSchema)
